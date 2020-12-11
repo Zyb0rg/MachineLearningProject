@@ -73,6 +73,14 @@ bool Player::JumpState()
 	return inJump;
 }
 
+void Player::Reset()
+{
+	accelerator1 = 0;
+	accelerator2 = 0;
+	Ypos = 256;
+	lastJump = 0;
+}
+
 void Player::CreateTexture1(const char* address, SDL_Renderer* ren)
 {
 	Tex1 = TextureManager::Texture(address, ren);

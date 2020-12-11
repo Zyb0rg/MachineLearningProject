@@ -1,11 +1,2 @@
-﻿  Background.cpp
-  GameLoop.cpp
-  main.cpp
-C:\Askari\DS - Rafi\DS Project\Game\Game\main.cpp(18,19): warning C4244: 'argument': conversion from 'double' to 'Uint32', possible loss of data
-  Object.cpp
-  Player.cpp
-C:\Askari\DS - Rafi\DS Project\Game\Game\Player.cpp(32,55): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Askari\DS - Rafi\DS Project\Game\Game\Player.cpp(45,40): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  TextureManager.cpp
-  Generating Code...
+﻿  GameLoop.cpp
   Game.vcxproj -> C:\Askari\DS - Rafi\DS Project\Game\x64\Debug\Game.exe

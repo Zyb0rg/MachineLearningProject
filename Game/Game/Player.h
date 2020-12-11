@@ -18,6 +18,7 @@ private:
 public:
     void Gravity();
     void GetJumpTime();
+    void Reset();
     void Jump();
     bool JumpState();
     void CreateTexture1(const char* address, SDL_Renderer* ren);
