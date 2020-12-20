@@ -27,7 +27,7 @@ bool Background::Pipe_Above1Update(int incY, int &score)
 	}
 	else
 	{
-		pipeDistance1--;
+		pipeDistance1 -= 3;
 		setSrc(0, 0, 320, 52);
 		setDest(pipeDistance1, -200 + this->incY1, 400, 52);
 		return false;
@@ -44,7 +44,7 @@ bool Background::Pipe_Below1Update(int incY)
 	}
 	else
 	{
-		pipeDistance1--;
+		pipeDistance1 -= 3;
 		setSrc(0, 0, 320, 52);
 		setDest(pipeDistance1, 350 + this->incY1, 400, 52);
 		return false;
@@ -62,7 +62,7 @@ bool Background::Pipe_Above2Update(int incY, int &score)
 	}
 	else
 	{
-		pipeDistance2--;
+		pipeDistance2-= 3;
 		setSrc(0, 0, 320, 52);
 		setDest(pipeDistance2, -200 + this->incY2, 400, 52);
 		return false;
@@ -79,7 +79,7 @@ bool Background::Pipe_Below2Update(int incY)
 	}
 	else
 	{
-		pipeDistance2--;
+		pipeDistance2-= 3;
 		setSrc(0, 0, 320, 52);
 		setDest(pipeDistance2, 350 + this->incY2, 400, 52);
 		return false;
@@ -97,7 +97,7 @@ bool Background::Pipe_Above3Update(int incY, int &score)
 	}
 	else
 	{
-		pipeDistance3--;
+		pipeDistance3-= 3;
 		setSrc(0, 0, 320, 52);
 		setDest(pipeDistance3, -200 + this->incY3, 400, 52);
 		return false;
@@ -114,7 +114,7 @@ bool Background::Pipe_Below3Update(int incY)
 	}
 	else
 	{
-		pipeDistance3--;
+		pipeDistance3-=3;
 		setSrc(0, 0, 320, 52);
 		setDest(pipeDistance3, 350 + this->incY3, 400, 52);
 		return false;
@@ -129,7 +129,7 @@ void Background::GroundUpdate1()
 	}
 	else
 	{
-		distance1--;
+		distance1-=3;
 		setSrc(0, 0, 112, 336);
 		setDest(distance1, 520, 112, 805);
 	}
@@ -143,10 +143,40 @@ void Background::GroundUpdate2()
 	}
 	else
 	{
-		distance2--;
+		distance2-=3;
 		setSrc(0, 0, 112, 336);
 		setDest(distance2, 520, 112, 805);
 	}
+}
+
+int Background::getPipe1Y()
+{
+	return 300 + this->incY1;
+}
+
+int Background::getPipe1X()
+{
+	return pipeDistance1;
+}
+
+int Background::getPipe2Y()
+{
+	return 300 + this->incY2;
+}
+
+int Background::getPipe2X()
+{
+	return pipeDistance2;
+}
+
+int Background::getPipe3Y()
+{
+	return 300 + this->incY3;
+}
+
+int Background::getPipe3X()
+{
+	return pipeDistance3;
 }
 
 void Background::Reset()

@@ -20,6 +20,12 @@ public:
 	bool Pipe_Above3Update(int incY, int& score);
 	bool Pipe_Below3Update(int incY);
 	void Reset();
+	int getPipe1X();
+	int getPipe1Y();
+	int getPipe2X();
+	int getPipe2Y();
+	int getPipe3X();
+	int getPipe3Y();
 	void GroundUpdate1();
 	void GroundUpdate2();
 	void Render(SDL_Renderer* ren);

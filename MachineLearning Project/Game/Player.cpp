@@ -22,6 +22,11 @@ void Player::Render(SDL_Renderer* ren)
 	}
 }
 
+int Player::getYpos()
+{
+	return Ypos;
+}
+
 void Player::Gravity()
 {
 	if (JumpState())

@@ -7,6 +7,7 @@
 #include"Background.h"
 #include"CollisionManager.h"
 #include"TextManager.h"
+#include"NeuralNetwork.h"
 
 class GameLoop
 {
@@ -21,9 +22,11 @@ private:
 	Background Pipe_Above3;
 	Background Pipe_Below3;
 	TextManager score;
+	NeuralNetwork neuralNetwork;
 	const int HEIGHT = 600;
 	const int WIDTH = 800;
 	int points = 0;
+	int nextCheckPoint = 0;
 	int variance1 = rand() % 201 - 100;
 	int variance2 = rand() % 201 - 100;
 	int variance3 = rand() % 201 - 100;

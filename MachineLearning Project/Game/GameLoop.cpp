@@ -34,7 +34,7 @@ void GameLoop::Intialize()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	TTF_Init();
-	window = SDL_CreateWindow("My Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, 0);
+	window = SDL_CreateWindow("Self Flapping Bird", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, 0);
 	if (window)
 	{
 		renderer = SDL_CreateRenderer(window, -1, 0);
@@ -75,6 +75,10 @@ void GameLoop::Event()
 	{
 		GameState = false;
 	}
+	if (neuralNetwork.Output() && !p.JumpState())
+	{
+		p.Jump();
+	}
 	if (event1.type == SDL_KEYDOWN)
 	{
 		if (event1.key.keysym.sym == SDLK_UP)
@@ -97,6 +101,25 @@ void GameLoop::Event()
 
 void GameLoop::Update()
 {
+	// Feeding NeuralNetwork with real time data input
+	neuralNetwork.Update(p.getYpos(), nextCheckPoint);
+
+	// Finding closest Checkpoint !
+	if (Pipe_Below1.getPipe1X() < Pipe_Below2.getPipe2X() && Pipe_Below1.getPipe1X() < Pipe_Below3.getPipe3X())
+	{
+		nextCheckPoint = Pipe_Below1.getPipe1Y();
+	}
+	else if (Pipe_Below2.getPipe2X() < Pipe_Below1.getPipe1X() && Pipe_Below2.getPipe2X() < Pipe_Below3.getPipe3X())
+	{
+		nextCheckPoint = Pipe_Below2.getPipe2Y();
+	}
+	else if (Pipe_Below3.getPipe3X() < Pipe_Below1.getPipe1X() && Pipe_Below3.getPipe3X() < Pipe_Below2.getPipe2X())
+	{
+		nextCheckPoint = Pipe_Below3.getPipe3Y();
+	}
+
+
+	// Scoring Mechanics
 	std::string s;
 	s = "Score: " + std::to_string(points);
 	score.Text(s, 255, 255, 255, renderer);
@@ -142,11 +165,13 @@ void GameLoop::CollisionDetection()
 		CollisionManager::CheckCollision(&p.getDest(), &Pipe_Above3.getDest()) || CollisionManager::CheckCollision(&p.getDest(), &Pipe_Below3.getDest()))
 	{
 		SDL_Delay(500);
+		neuralNetwork.SaveProgress("Progress.txt");
 		Reset();
 	}
-	else if (CollisionManager::CheckCollision(&p.getDest(), &ground1.getDest()) || CollisionManager::CheckCollision(&p.getDest(), &ground2.getDest()))
+	else if (CollisionManager::CheckCollision(&p.getDest(), &ground1.getDest()) || CollisionManager::CheckCollision(&p.getDest(), &ground2.getDest()) || p.getYpos() < 0)
 	{
 		SDL_Delay(500);
+		neuralNetwork.SaveProgress("Progress.txt");
 		Reset();
 	}
 }
