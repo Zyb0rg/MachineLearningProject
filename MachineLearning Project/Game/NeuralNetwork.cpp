@@ -1,5 +1,12 @@
 #include "NeuralNetwork.h"
 #include <fstream>
+#include <SDL.h>
+
+NeuralNetwork::NeuralNetwork()
+{
+	threshold = 0;
+	subDivisor = 800;
+}
 
 void NeuralNetwork::LoadProgress(const char* filename)
 {
@@ -8,17 +15,11 @@ void NeuralNetwork::LoadProgress(const char* filename)
 	File.close();
 }
 
-void NeuralNetwork::SaveProgress(const char* filename)
-{
-	std::ofstream File(filename);
-	File << rand() % 500 - 250;
-	File.close();
-}
-
 void NeuralNetwork::InputLayer(int birdY, int CheckPointY)
 {
 	InputNeuron1.value = birdY;
 	InputNeuron2.value = CheckPointY;
+	threshold = CheckPointY;
 }
 
 void NeuralNetwork::HiddenLayer()
@@ -76,6 +77,34 @@ void NeuralNetwork::reLU(double x, double y)
 	}
 }
 
+void NeuralNetwork::SaveProgress(const char* filename, int genome)
+{
+	int randomizer = 0;
+	std::ofstream File(filename);
+	if (genome < 7)
+	{
+		srand(SDL_GetTicks());
+		randomizer = rand() % 500 - 250;
+		if (randomizer > (threshold-150) && randomizer < (150+threshold))
+			randomizer = randomizer + rand() % 500 - 1200;
+	}
+	else
+	{
+		if(subDivisor!=0)
+		randomizer = rand() % subDivisor * 2 - (subDivisor/2)*2;
+		subDivisor = randomizer;
+	}
+	File << randomizer;
+	File.close();
+}
+
+void NeuralNetwork::FlushProgress()
+{
+	std::ofstream File("Progress.txt");
+	File << rand() % 500 + 300;
+	File.close();
+}
+
 bool NeuralNetwork::Output()
 {
 	if (OutputNeuron.value == 1)
@@ -88,4 +117,9 @@ bool NeuralNetwork::Output()
 	}
 }
 
+NeuralNetwork::~NeuralNetwork()
+{
+	threshold = 0;
+	subDivisor = 0;
+}
 

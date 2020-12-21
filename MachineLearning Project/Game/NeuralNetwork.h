@@ -4,13 +4,18 @@
 class NeuralNetwork
 {
 private:
+	int threshold;
+	int subDivisor;
 	Neuron InputNeuron1;
 	Neuron InputNeuron2;
 	Neuron HiddenLayerNeuron;
 	Neuron OutputNeuron;
 public:
+	NeuralNetwork();
+	~NeuralNetwork();
 	void LoadProgress(const char* filename);
-	void SaveProgress(const char* filename);
+	void SaveProgress(const char* filename, int genome);
+	void FlushProgress();
 	void InputLayer(int birdY, int CheckPointY);
 	void HiddenLayer();
 	void ActivationFunction();

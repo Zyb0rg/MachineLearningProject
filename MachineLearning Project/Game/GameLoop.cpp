@@ -55,6 +55,7 @@ void GameLoop::Intialize()
 			Pipe_Above3.CreateTexture("Image/Pipe_Above.png", renderer);
 			Pipe_Below3.CreateTexture("Image/Pipe_Below.png", renderer);
 			score.CreateFont("Fonts/calibrib.ttf", 38);
+			gen.CreateFont("Fonts/calibrib.ttf", 38);
 		}
 		else
 		{
@@ -64,6 +65,22 @@ void GameLoop::Intialize()
 	else
 	{
 		std::cout << "window not created!" << std::endl;
+	}
+}
+
+void GameLoop::MainMenu()
+{
+	menu.Initialize(renderer);
+	while (!menu.getClicked())
+	{
+		if (menu.EventHandling(event1) == -1)
+		{
+			GameState = false;
+			break;
+		}
+		SDL_RenderClear(renderer);
+		menu.Render(renderer);
+		SDL_RenderPresent(renderer);
 	}
 }
 
@@ -101,7 +118,7 @@ void GameLoop::Event()
 
 void GameLoop::Update()
 {
-	// Feeding NeuralNetwork with real time data input
+	// Feeding NeuralNetwork with real time data
 	neuralNetwork.Update(p.getYpos(), nextCheckPoint);
 
 	// Finding closest Checkpoint !
@@ -123,6 +140,11 @@ void GameLoop::Update()
 	std::string s;
 	s = "Score: " + std::to_string(points);
 	score.Text(s, 255, 255, 255, renderer);
+
+	// Generation Mechanics
+	std::string s2;
+	s2 = "Gen: " + std::to_string(generations);
+	gen.Text(s2, 255, 255, 255, renderer);
 
 	bool flag1 = false, flag2 = false;
 	ground1.GroundUpdate1();
@@ -165,13 +187,15 @@ void GameLoop::CollisionDetection()
 		CollisionManager::CheckCollision(&p.getDest(), &Pipe_Above3.getDest()) || CollisionManager::CheckCollision(&p.getDest(), &Pipe_Below3.getDest()))
 	{
 		SDL_Delay(500);
-		neuralNetwork.SaveProgress("Progress.txt");
+		generations++;
+		neuralNetwork.SaveProgress("Progress.txt", generations);
 		Reset();
 	}
 	else if (CollisionManager::CheckCollision(&p.getDest(), &ground1.getDest()) || CollisionManager::CheckCollision(&p.getDest(), &ground2.getDest()) || p.getYpos() < 0)
 	{
 		SDL_Delay(500);
-		neuralNetwork.SaveProgress("Progress.txt");
+		generations++;
+		neuralNetwork.SaveProgress("Progress.txt", generations);
 		Reset();
 	}
 }
@@ -203,14 +227,17 @@ void GameLoop::Render()
 	Pipe_Below3.PipeRender(renderer);
 	ground1.GroundRender(renderer);
 	ground2.GroundRender(renderer);
-	score.Render(renderer);
+	score.Render(renderer, 350, 10);
+	gen.Render(renderer, 10, 10);
 	p.Render(renderer);
 	SDL_RenderPresent(renderer);
 }
 
 void GameLoop::Clear()
 {
+	neuralNetwork.FlushProgress();
 	score.CloseFont();
+	gen.CloseFont();
 	TTF_Quit();
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);

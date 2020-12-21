@@ -31,9 +31,9 @@ void TextManager::CreateTexture(SDL_Surface* sur,SDL_Renderer* ren)
 	fontTexture = SDL_CreateTextureFromSurface(ren, sur);
 }
 
-void TextManager::Render(SDL_Renderer* ren)
+void TextManager::Render(SDL_Renderer* ren, int x, int y)
 {
-	TextRect.x = 400 - 50, TextRect.y = 10;
+	TextRect.x = x, TextRect.y = y;
 	SDL_QueryTexture(fontTexture, NULL, NULL, &TextRect.w, &TextRect.h);
 	SDL_RenderCopy(ren, fontTexture, NULL, &TextRect);
 }

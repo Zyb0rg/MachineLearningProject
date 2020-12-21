@@ -8,6 +8,7 @@
 #include"CollisionManager.h"
 #include"TextManager.h"
 #include"NeuralNetwork.h"
+#include"MainMenu.h"
 
 class GameLoop
 {
@@ -22,10 +23,13 @@ private:
 	Background Pipe_Above3;
 	Background Pipe_Below3;
 	TextManager score;
+	TextManager gen;
 	NeuralNetwork neuralNetwork;
+	MainMenu menu;
 	const int HEIGHT = 600;
 	const int WIDTH = 800;
 	int points = 0;
+	int generations = 0;
 	int nextCheckPoint = 0;
 	int variance1 = rand() % 201 - 100;
 	int variance2 = rand() % 201 - 100;
@@ -36,6 +40,7 @@ private:
 	SDL_Renderer* renderer;
 public:
 	GameLoop();
+	void MainMenu();
 	bool getGameState();
 	void Update();
 	void Reset();

@@ -7,6 +7,7 @@ int main(int argc, char** argv)
 	double first;
 	double last = 0;
 	g->Intialize();
+	g->MainMenu();
 	while (g->getGameState())
 	{
 		g->Event();
