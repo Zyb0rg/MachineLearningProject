@@ -124,15 +124,38 @@ void GameLoop::Update()
 	// Finding closest Checkpoint !
 	if (Pipe_Below1.getPipe1X() < Pipe_Below2.getPipe2X() && Pipe_Below1.getPipe1X() < Pipe_Below3.getPipe3X())
 	{
-		nextCheckPoint = Pipe_Below1.getPipe1Y();
+		if (Pipe_Below1.getPipe1X() < -5)
+		{
+			nextCheckPoint = Pipe_Below2.getPipe2Y();
+		}
+		else
+		{
+			nextCheckPoint = Pipe_Below1.getPipe1Y();
+		}
 	}
 	else if (Pipe_Below2.getPipe2X() < Pipe_Below1.getPipe1X() && Pipe_Below2.getPipe2X() < Pipe_Below3.getPipe3X())
 	{
-		nextCheckPoint = Pipe_Below2.getPipe2Y();
+		if (Pipe_Below2.getPipe2X() < -5)
+		{
+			nextCheckPoint = Pipe_Below3.getPipe3Y();
+		}
+		else
+		{
+			nextCheckPoint = Pipe_Below2.getPipe2Y();
+		}
+		
 	}
 	else if (Pipe_Below3.getPipe3X() < Pipe_Below1.getPipe1X() && Pipe_Below3.getPipe3X() < Pipe_Below2.getPipe2X())
 	{
-		nextCheckPoint = Pipe_Below3.getPipe3Y();
+		if (Pipe_Below3.getPipe3X() < -5)
+		{
+			nextCheckPoint = Pipe_Below1.getPipe1Y();
+		}
+		else
+		{
+			nextCheckPoint = Pipe_Below3.getPipe3Y();
+		}
+		
 	}
 
 

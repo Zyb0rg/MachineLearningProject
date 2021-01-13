@@ -6,6 +6,7 @@ class NeuralNetwork
 private:
 	int threshold;
 	int subDivisor;
+	int probablity;
 	Neuron InputNeuron1;
 	Neuron InputNeuron2;
 	Neuron HiddenLayerNeuron;

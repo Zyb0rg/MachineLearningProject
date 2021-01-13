@@ -55,7 +55,7 @@ void Player::Gravity()
 
 void Player::Jump()
 {
-	if (jumpTimer - lastJump > 180)
+	if (jumpTimer - lastJump > 50)
 	{
 		accelerator1 = 0;
 		accelerator2 = 0;

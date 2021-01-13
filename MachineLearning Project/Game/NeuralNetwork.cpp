@@ -6,6 +6,7 @@ NeuralNetwork::NeuralNetwork()
 {
 	threshold = 0;
 	subDivisor = 800;
+	probablity = 7;
 }
 
 void NeuralNetwork::LoadProgress(const char* filename)
@@ -81,11 +82,11 @@ void NeuralNetwork::SaveProgress(const char* filename, int genome)
 {
 	int randomizer = 0;
 	std::ofstream File(filename);
-	if (genome < 7)
+	if (genome < probablity)
 	{
 		srand(SDL_GetTicks());
 		randomizer = rand() % 500 - 250;
-		if (randomizer > (threshold-150) && randomizer < (150+threshold))
+		while (randomizer > (threshold-150) && randomizer < (150+threshold))
 			randomizer = randomizer + rand() % 500 - 1200;
 	}
 	else
