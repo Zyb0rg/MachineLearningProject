@@ -144,11 +144,14 @@
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="DoublyLinkedList.cpp" />
     <ClCompile Include="GameLoop.cpp" />
+    <ClCompile Include="LeaderBoard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="NeuralNetwork.cpp" />
     <ClCompile Include="Neuron.cpp" />
+    <ClCompile Include="Node.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="TextManager.cpp" />
@@ -157,10 +160,13 @@
   <ItemGroup>
     <ClInclude Include="Background.h" />
     <ClInclude Include="CollisionManager.h" />
+    <ClInclude Include="DoublyLinkedList.h" />
     <ClInclude Include="GameLoop.h" />
+    <ClInclude Include="LeaderBoard.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="NeuralNetwork.h" />
     <ClInclude Include="Neuron.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="TextManager.h" />

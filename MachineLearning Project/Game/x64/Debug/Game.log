@@ -1,6 +1,2 @@
 ﻿  GameLoop.cpp
-  NeuralNetwork.cpp
-  main.cpp
-C:\Askari\DS - Rafi\DS Project\MachineLearning Project\Game\main.cpp(19,19): warning C4244: 'argument': conversion from 'double' to 'Uint32', possible loss of data
-  Generating Code...
   Game.vcxproj -> C:\Askari\DS - Rafi\DS Project\MachineLearning Project\x64\Debug\Game.exe

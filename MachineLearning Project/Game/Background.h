@@ -30,6 +30,7 @@ public:
 	void GroundUpdate2();
 	void Render(SDL_Renderer* ren);
 	void GroundRender(SDL_Renderer* ren);
+	void LeaderboardRender(SDL_Renderer* ren);
 	void PipeRender(SDL_Renderer* ren);
 
 };

@@ -6,6 +6,11 @@ void Background::Render(SDL_Renderer* ren)
 	SDL_RenderCopy(ren, getTexture(), NULL, NULL);
 }
 
+void Background::LeaderboardRender(SDL_Renderer* ren)
+{
+	SDL_RenderCopy(ren, getTexture(), &getSrc(), &getDest());
+}
+
 void Background::GroundRender(SDL_Renderer* ren)
 {
 	SDL_RenderCopy(ren, getTexture(), &getSrc(), &getDest());

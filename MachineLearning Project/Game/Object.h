@@ -14,6 +14,8 @@ public:
 	void setSrc(int x, int y, int h, int w);
 	void setDest(int x, int y, int h, int w);
 
+	void SetBlendMode(SDL_BlendMode blending);
+	void SetAlpha(Uint8 alpha);
 	void CreateTexture(const char* address, SDL_Renderer* ren);
 	void virtual Render(SDL_Renderer* ren)=0;
 };

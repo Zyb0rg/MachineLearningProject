@@ -36,3 +36,13 @@ void Object::CreateTexture(const char* address,SDL_Renderer* ren)
 {
 	Tex = TextureManager::Texture(address, ren);
 }
+
+void Object::SetBlendMode(SDL_BlendMode blending)
+{
+	SDL_SetTextureBlendMode(getTexture(), blending);
+}
+
+void Object::SetAlpha(Uint8 alpha)
+{
+	SDL_SetTextureAlphaMod(getTexture(), alpha);
+}
