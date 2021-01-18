@@ -43,7 +43,6 @@ void GameLoop::Intialize()
 		renderer = SDL_CreateRenderer(window, -1, 0);
 		if (renderer)
 		{
-			std::cout << "Succeeded!" << std::endl;
 			GameState = true;
 			lb.Initialize(renderer);
 			p.CreateTexture("Image/yellowbird1.png", renderer);

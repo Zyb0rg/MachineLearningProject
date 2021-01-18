@@ -1,4 +1,5 @@
 #include "NeuralNetwork.h"
+#include <iostream>
 #include <fstream>
 #include <SDL.h>
 
@@ -86,7 +87,8 @@ void NeuralNetwork::SaveProgress(const char* filename, int genome)
 	{
 		srand(SDL_GetTicks());
 		randomizer = rand() % 500 - 250;
-		while (randomizer > (threshold-150) && randomizer < (150+threshold))
+		int mx = std::max(probablity, 150);
+		if (randomizer > -(mx) && randomizer < (mx))
 			randomizer = randomizer + rand() % 500 - 1200;
 	}
 	else
